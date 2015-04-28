@@ -26,5 +26,4 @@ require([
 	// инициализируем роутер и стартуем Backbone.history()
 	new Workspace();
 	Backbone.history.start();
-
 });

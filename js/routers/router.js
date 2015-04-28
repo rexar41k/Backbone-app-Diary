@@ -10,7 +10,7 @@ define([
     'views/places',
     'library/jquery-ui.min',
     'library/parsley.min',
-    'library/ru'
+    'library/ru',
 ], function($, Backbone, InfoView, eventCollection, EventShow, ListEventView, EventView, Event, PlacesView){
 
     var Router = Backbone.Router.extend({
@@ -33,32 +33,38 @@ define([
         initialize: function () {
             window.collect = new eventCollection();
 
-            var event1 = new Event({
-                id: 101,
-                eventName: "Event 101",
-                eventText: "event text 101",
-                eventDate: '13/10/91',
-                eventRatio: 'Нейтральное',
-                eventVideo: 'https://www.youtube.com/watch?v=wLKP9uffaD0',
-                eventMap: '60.06634,39.305008'
-            }); 
+            if(localStorage.getItem('collect')) {
+                collect.add(JSON.parse(localStorage.getItem('collect')));
+            } else {
+                var event1 = new Event({
+                    id: 101,
+                    eventName: "Event 101",
+                    eventText: "event text 101",
+                    eventDate: '13/10/91',
+                    eventRatio: 'Нейтральное',
+                    eventVideo: 'https://www.youtube.com/watch?v=wLKP9uffaD0',
+                    eventMap: '60.06634,39.305008'
+                }); 
 
-            var event2 = new Event({
-                id: 102,
-                eventName: "Event 102",
-                eventText: "event text 102",
-                eventDate: '12/10/91',
-                eventRatio: 'Положительное',
-                eventVideo: 'https://www.youtube.com/watch?v=GVpPV4tHT58',
-                eventMap: '70.06634,34.305008'
-            });
+                var event2 = new Event({
+                    id: 102,
+                    eventName: "Event 102",
+                    eventText: "event text 102",
+                    eventDate: '12/10/91',
+                    eventRatio: 'Положительное',
+                    eventVideo: 'https://www.youtube.com/watch?v=GVpPV4tHT58',
+                    eventMap: '70.06634,34.305008'
+                });
 
-            collect.add(event1).add(event2);
+                collect.add(event1).add(event2);
+            }
         },
 
         eventSuccessAdd: function () {
             $('h3').text("Событие успешно создано!");
             $('#main').html('<a href="#"><button>На главную</button></a><a href="#events"><button> К списку событий </button>');
+            localStorage.setItem('collect', JSON.stringify(collect.toJSON()));
+            localStorage.setItem('counter', window.counter);
         },
 
         showOneEvent: function (id) {

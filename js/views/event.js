@@ -2,12 +2,16 @@ define([
     'jquery',
     'backbone',
     'underscore',
-    'text!templates/create.html',
+    'text!templates/create.html'
 ], function($, Backbone, _, Template){
 
 	var count = (function () {
-	    var counter = 1;
-
+		if (localStorage.getItem('counter')) {
+			window.counter = localStorage.getItem('counter');
+		} else {
+			window.counter = 1;
+		}
+	    
 	    return function () {
 	    	return counter++;
 	    }
@@ -31,7 +35,6 @@ define([
 		},
 
 		saveEvent: function(e) {
-
 			e.preventDefault();
 			var $this = e.currentTarget,
 			 	eventName = $($this[0]).val(),
