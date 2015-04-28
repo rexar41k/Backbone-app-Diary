@@ -1,0 +1,52 @@
+#map-list {
+  height: 300px;
+  width: 500px;
+  margin: 0px;
+  padding: 0px;
+}
+#map {
+  height: 200px;
+  width: 300px;
+  margin: 0px;
+  padding: 0px
+}
+#object {
+  display: none;
+}
+#wrapper {
+  width: 60%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  min-width: 600px;
+  max-width: 800px;
+  padding: 10px;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+.clearfix{
+    height:0px;
+    clear:both;
+    background:#e74c3c;
+}
+ul.cssmenu {
+   padding: 0;
+   margin: 0;
+   list-style: none;
+} 
+
+ul.cssmenu li {
+   float: left;
+} 
+
+ul.cssmenu li a, ul.cssmenu li a:visited {
+   display: block;
+   padding: 5px;
+   margin-right: 1px;
+   color: #FAFAD2;
+   background-color: #4682B4;
+}
+
+ul.cssmenu a:hover {
+   color: #4682B4;
+   background-color: #FAFAD2;
+}

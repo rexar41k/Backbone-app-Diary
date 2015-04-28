@@ -1,0 +1,19 @@
+<p>Название события * :<br>
+	<input type="text" value="<%=eventName%>" name="eventName" placeholder="Название события" required></p>
+<p>Описание события * :<br>
+	<textarea rows="5" cols="20" name="eventText" placeholder="Описание события" data-parsley-validation-threshold="10"><%=eventText%></textarea></p>
+<p>Дата *: <input type="text" id="datepicker" value="<%=eventDate%>"></p>
+<p>Отношение * :
+  <select name="position" id="position">
+    <option selected="selected">Нейтральное</option>
+    <option>Положительное</option>
+    <option>Отрицательное</option>
+  </select>
+<p>Добавить видео :<br>
+	<input id="inputVideo" type="text" placeholder="вставьте URL видео" value="<%=eventVideo%>">
+	<object id="object" width="300" height="200" data="" type="application/x-shockwave-flash"></object></p>
+<p>Добавить место на карту :<br>
+<input id="map-place" type="text" placeholder="Введите адрес события" value="<%=eventMap%>">
+	<div id="map"></div></p>
+	<button type="submit" id="save-event">Отправить</button>
+	<button type="button" id="form-clear">Очистить</button>

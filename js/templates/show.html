@@ -1,0 +1,14 @@
+	<p><strong>Название события:</strong> <%=eventName%></p>
+	<p><strong>Описание события:</strong> <%=eventText%></p>
+	<p><strong>Дата события:</strong> <%=eventDate%></p>
+	<p><strong>Отношение к событию:</strong> <%=eventRatio%></p>
+		<% if (eventVideo.indexOf("youtube") != -1) { %>
+			<% var evVideo = eventVideo.split("="); %>
+			<p><strong>Видео события:</strong><br>
+	    	<object id="object-post" width="300" height="200" data='http://www.youtube.com/v/<%=evVideo[1]%>' type="application/x-shockwave-flash"></object></p>
+		<% } %>
+	
+		<% if (/\d+/.test(eventMap)) { %>
+	    	<p><strong>Место события:</strong></p>
+	    	<img src="http://maps.googleapis.com/maps/api/staticmap?&zoom=8&size=300x200&maptype=roadmap&markers=color:red%7Clabel:S%7C<%=eventMap%>&sensor=false"></img>
+		<% } %>
