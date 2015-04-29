@@ -65,9 +65,6 @@ define([
 			};
 		},
 
-		clearForm: function() {
-			this.$el.trigger('reset');
-		}
 	});
 
 	return EventView;

@@ -20,9 +20,9 @@
 <p><span class="create-h1">Дата *: </span><input type="text" id="datepicker" value="<%=eventDate%>" pattern="\d+/d+/d+\" required></p>
 <p><span class="create-h1">Отношение :</span>
   <select name="position" id="eventRatio">
-    <option selected>Нейтральное</option>
-    <option>Положительное</option>
-    <option>Отрицательное</option>
+    <option <% if(eventRatio.indexOf("Нейтральное") != -1) { %>selected<% } %>>Нейтральное</option>
+    <option <% if(eventRatio.indexOf("Положительное") != -1) { %>selected<% } %>>Положительное</option>
+    <option <% if(eventRatio.indexOf("Отрицательное") != -1) { %>selected<% } %>>Отрицательное</option>
   </select>
 <p><span class="create-h1">Добавить видео :</span><br>
 	<input id="inputVideo" type="text" placeholder="вставьте URL видео" value="<%=eventVideo%>">
