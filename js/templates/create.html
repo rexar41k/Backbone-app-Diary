@@ -1,9 +1,9 @@
 <p>Название события * :<br>
-	<input type="text" value="<%=eventName%>" name="eventName" placeholder="Название события" required></p>
+	<input type="text" value="<%=eventName%>" name="eventName" placeholder="Название события" minlength="3" maxlength="20" required></p>
 <p>Описание события * :<br>
-	<textarea rows="5" cols="20" name="eventText" placeholder="Описание события" data-parsley-validation-threshold="10"><%=eventText%></textarea></p>
-<p>Дата *: <input type="text" id="datepicker" value="<%=eventDate%>"></p>
-<p>Отношение * :
+	<textarea rows="5" cols="20" name="eventText" placeholder="Описание события" minlength="20" maxlength="100" required><%=eventText%></textarea></p>
+<p>Дата *: <input type="text" id="datepicker" value="<%=eventDate%>" pattern="\d+/d+/d+\" required></p>
+<p>Отношение :
   <select name="position" id="position">
     <option selected="selected">Нейтральное</option>
     <option>Положительное</option>
@@ -16,4 +16,3 @@
 <input id="map-place" type="text" placeholder="Введите адрес события" value="<%=eventMap%>">
 	<div id="map"></div></p>
 	<button type="submit" id="save-event">Отправить</button>
-	<button type="button" id="form-clear">Очистить</button>

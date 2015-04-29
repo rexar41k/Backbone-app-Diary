@@ -1,3 +1,12 @@
+.parsley-minlength {
+  background-color: red;
+}
+.parsley-length {
+  background-color: red;
+}
+.parsley-required {
+  background-color: red;
+}
 #map-list {
   height: 300px;
   width: 500px;
