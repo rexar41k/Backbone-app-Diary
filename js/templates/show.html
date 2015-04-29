@@ -1,5 +1,5 @@
 	<p><strong>Название события:</strong> <%=eventName%></p>
-	<p><strong>Описание события:</strong> <%=eventText%></p>
+	<p><strong>Описание события:</strong><span class="<%=eventClass%>"> <%=eventText%></span></p>
 	<p><strong>Дата события:</strong> <%=eventDate%></p>
 	<p><strong>Отношение к событию:</strong> <%=eventRatio%></p>
 		<% if (eventVideo.indexOf("youtube") != -1) { %>
@@ -10,5 +10,5 @@
 	
 		<% if (/\d+/.test(eventMap)) { %>
 	    	<p><strong>Место события:</strong></p>
-	    	<img src="http://maps.googleapis.com/maps/api/staticmap?&zoom=8&size=300x200&maptype=roadmap&markers=color:red%7Clabel:S%7C<%=eventMap%>&sensor=false"></img>
+	    	<img src="http://maps.googleapis.com/maps/api/staticmap?&zoom=5&size=300x200&maptype=roadmap&markers=color:red%7Clabel:S%7C<%=eventMap%>&sensor=false"></img>
 		<% } %>

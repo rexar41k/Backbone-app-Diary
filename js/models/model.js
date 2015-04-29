@@ -11,7 +11,8 @@ define([
 	    	eventDate: '',
 	    	eventRatio: '',
 	    	eventVideo: '',
-	    	eventMap: ''
+	    	eventMap: '',
+	    	eventClass: ''
 	    },
 
 	    validate: function(attr) {

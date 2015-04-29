@@ -10,7 +10,7 @@ define([
     'views/places',
     'library/jquery-ui.min',
     'library/parsley.min',
-    'library/ru',
+    'library/ru'
 ], function($, Backbone, InfoView, eventCollection, EventShow, ListEventView, EventView, Event, PlacesView){
 
     var Router = Backbone.Router.extend({
@@ -43,7 +43,8 @@ define([
                     eventDate: '13/10/91',
                     eventRatio: 'Нейтральное',
                     eventVideo: 'https://www.youtube.com/watch?v=wLKP9uffaD0',
-                    eventMap: '60.06634,39.305008'
+                    eventMap: '60.06634,39.305008',
+                    eventClass: ''
                 }); 
 
                 var event2 = new Event({
@@ -53,7 +54,8 @@ define([
                     eventDate: '12/10/91',
                     eventRatio: 'Положительное',
                     eventVideo: 'https://www.youtube.com/watch?v=GVpPV4tHT58',
-                    eventMap: '70.06634,34.305008'
+                    eventMap: '70.06634,34.305008',
+                    eventClass: ''
                 });
 
                 collect.add(event1).add(event2);
@@ -199,19 +201,80 @@ define([
             var view = new EventView({model: new Event(), collection: collect});
             $('#main').html(view.render().$el);
 
+            this.textRedactor();
             this.createDatePicker();
             this.createParsley();
             this.createMap();
             this.createVideo();
         },
 
+        textRedactor: function () {
+            $('#button-show').click(function(e) {
+                e.preventDefault();
+                $('#show-redactor').toggle()
+                $('#button-show').toggleText("Скрыть редактор", "Показать редактор");
+            });
+
+            $('#event-form :checkbox').change(function() {
+                switch (this.id) {
+                    case 'bold':
+                        $('#myTextArea').toggleClass('text-bold');
+                        break
+                    case 'italic':
+                        $('#myTextArea').toggleClass('text-italic');
+                        break
+                    case 'underline':
+                        $('#myTextArea').toggleClass('text-underline');
+                        break
+                }
+            });
+
+            $('#event-form #select').change(function() {
+                switch ($("#select").val()) {
+                    case '14px':
+                        $('#myTextArea').removeClass('text-18px text-22px').addClass('text-14px');
+                        break
+                    case '18px':
+                        $('#myTextArea').removeClass('text-14px text-22px').addClass('text-18px');
+                        break
+                    case '22px':
+                        $('#myTextArea').removeClass('text-18px text-14px').addClass('text-22px');
+                        break
+                }
+            });
+
+            $('#event-form input[type="radio"]').change(function() {
+                switch (this.value) {
+                    case 'red':
+                        $('#myTextArea').removeClass('text-green text-blue').addClass('text-red');
+                        break
+                    case 'green':
+                        $('#myTextArea').removeClass('text-red text-blue').addClass('text-green');
+                        break
+                    case 'blue':
+                        $('#myTextArea').removeClass('text-red text-green').addClass('text-blue');
+                        break
+                }
+                $('#myTextArea').css('color', this.value);
+            });
+
+            $.fn.toggleText = function (newText, oldText){
+                if (this.text() == newText){
+                    this.text(oldText);
+                } else {
+                    this.text(newText)
+                }
+            }
+        },
+
         eventEdit: function(id) {
             $('h3').text("Редактирование события с id:" + id);
             var event = collect.findWhere({id: +id}),
-                view = new EventView({model: event});
+                view = new EventView({model: event, collection: collect});
 
             $('#main').html(view.render().$el);
 
+            this.textRedactor();
             this.createDatePicker();
             this.createParsley();
             this.createMap();

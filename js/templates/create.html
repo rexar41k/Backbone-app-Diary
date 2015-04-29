@@ -1,18 +1,33 @@
-<p>Название события * :<br>
-	<input type="text" value="<%=eventName%>" name="eventName" placeholder="Название события" minlength="3" maxlength="20" required></p>
-<p>Описание события * :<br>
-	<textarea rows="5" cols="20" name="eventText" placeholder="Описание события" minlength="20" maxlength="100" required><%=eventText%></textarea></p>
-<p>Дата *: <input type="text" id="datepicker" value="<%=eventDate%>" pattern="\d+/d+/d+\" required></p>
-<p>Отношение :
-  <select name="position" id="position">
-    <option selected="selected">Нейтральное</option>
+<p><span class="create-h1">Название события * :</span><br>
+	<input id="eventName" type="text" value="<%=eventName%>" name="eventName" placeholder="Название события" minlength="3" maxlength="20" required></p>
+<p><span class="create-h1">Описание события * :</span><br>
+	<button id="button-show">Показать редактор</button>
+    <div id="show-redactor">
+        <input type="checkbox" id="underline" <% if(eventClass.indexOf("text-underline") != -1) { %>checked<% } %>>underline
+        <input type="checkbox" id="italic" <% if(eventClass.indexOf("text-italic") != -1) { %>checked<% } %>>italic
+        <input type="checkbox" id="bold" <% if(eventClass.indexOf("text-bold") != -1) { %>checked<% } %>>bold<br>
+        <span>Размер текста</span>
+        <select id="select">
+          <option <% if(eventClass.indexOf("text-14px") != -1) { %>selected<% } %>>14px</option>
+          <option <% if(eventClass.indexOf("text-18px") != -1) { %>selected<% } %>>18px</option>
+          <option <% if(eventClass.indexOf("text-22px") != -1) { %>selected<% } %>>22px</option>
+        </select>
+        <input type="radio" name="color" value="red" <% if(eventClass.indexOf("text-red") != -1) { %>checked<% } %>>red
+        <input type="radio" name="color" value="green" <% if(eventClass.indexOf("text-green") != -1) { %>checked<% } %>>green
+        <input type="radio" name="color" value="blue" <% if(eventClass.indexOf("text-blue") != -1) { %>checked<% } %>>blue
+    </div>
+	<textarea id="myTextArea" rows="5" cols="20" name="eventText" placeholder="Описание события" minlength="20" maxlength="100" class="<%=eventClass%>" required><%=eventText%></textarea></p>
+<p><span class="create-h1">Дата *: </span><input type="text" id="datepicker" value="<%=eventDate%>" pattern="\d+/d+/d+\" required></p>
+<p><span class="create-h1">Отношение :</span>
+  <select name="position" id="eventRatio">
+    <option selected>Нейтральное</option>
     <option>Положительное</option>
     <option>Отрицательное</option>
   </select>
-<p>Добавить видео :<br>
+<p><span class="create-h1">Добавить видео :</span><br>
 	<input id="inputVideo" type="text" placeholder="вставьте URL видео" value="<%=eventVideo%>">
 	<object id="object" width="300" height="200" data="" type="application/x-shockwave-flash"></object></p>
-<p>Добавить место на карту :<br>
+<p><span class="create-h1">Добавить место на карту :</span><br>
 <input id="map-place" type="text" placeholder="Введите адрес события" value="<%=eventMap%>">
 	<div id="map"></div></p>
 	<button type="submit" id="save-event">Отправить</button>

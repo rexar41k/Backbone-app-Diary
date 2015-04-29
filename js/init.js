@@ -22,7 +22,7 @@ require([
 	'collections/events',
 	'routers/router',
     'models/model'
-], function (Backbone, Collection, Workspace, Model) {
+], function (Backbone, Collection, Workspace) {
 	// инициализируем роутер и стартуем Backbone.history()
 	new Workspace();
 	Backbone.history.start();

@@ -1,3 +1,33 @@
+.text-red {
+  color: red;
+}
+.text-green {
+  color: green;
+}
+.text-blue {
+  color: blue;
+}
+.text-14px {
+  font-size: 14px;
+}
+.text-18px {
+  font-size: 18px;
+}
+.text-22px {
+  font-size: 22px;
+}
+.text-underline {
+  text-decoration: underline;
+}
+.text-italic {
+  font-style: italic;
+}
+.text-bold {
+  font-weight: bold;
+}
+.create-h1 {
+  font-weight: bold;
+}
 .parsley-minlength {
   background-color: red;
 }
@@ -58,4 +88,8 @@ ul.cssmenu li a, ul.cssmenu li a:visited {
 ul.cssmenu a:hover {
    color: #4682B4;
    background-color: #FAFAD2;
+}
+
+#show-redactor {
+  display: none;
 }

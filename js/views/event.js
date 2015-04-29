@@ -36,13 +36,15 @@ define([
 
 		saveEvent: function(e) {
 			e.preventDefault();
+
 			var $this = e.currentTarget,
-			 	eventName = $($this[0]).val(),
-			 	eventText = $($this[1]).val(),
-			 	eventDate = $($this[2]).val(),
-			 	eventRatio = $($this[3]).val(),
-			 	eventVideo = $($this[4]).val(),
-			 	eventMap = $('#map-place').val();
+			 	eventName = $('#eventName').val(),
+			 	eventText = $('#myTextArea').val(),
+			 	eventDate = $('#datepicker').val(),
+			 	eventRatio = $('#eventRatio').val(),
+			 	eventVideo = $('#inputVideo').val(),
+			 	eventMap = $('#map-place').val(),
+			 	eventClass = $('#myTextArea').attr('class');
 
 			this.model.set({
 				eventName: eventName,
@@ -51,6 +53,7 @@ define([
 				eventRatio: eventRatio,
 				eventVideo: eventVideo,
 				eventMap: eventMap,
+				eventClass: eventClass
 			},{validate:true});
 
 			if (!this.model.get('id')) {
