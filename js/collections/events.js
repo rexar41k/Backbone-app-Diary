@@ -6,7 +6,7 @@ define([
 
 	var Event = Backbone.Collection.extend({
 		model: Model,
-		sort_key: 'eventDate',
+		sort_key: 'id',
 
 		comparator: function(a) {
 	        return a.get(this.sort_key);

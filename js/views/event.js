@@ -46,7 +46,8 @@ define([
 			 	eventMap = $('#map-place').val(),
 			 	eventClass = $('#myTextArea').attr('class');
 
-			this.model.set({
+			if (eventName.length > 3 && eventText.length > 20 && eventDate.length > 7) {
+				this.model.set({
 				eventName: eventName,
 				eventText: eventText,
 				eventDate: eventDate,
@@ -54,14 +55,15 @@ define([
 				eventVideo: eventVideo,
 				eventMap: eventMap,
 				eventClass: eventClass
-			},{validate:true});
+				},{validate:true});
 
-			if (!this.model.get('id')) {
-				this.model.set('id', count());
-			};
+				if (!this.model.get('id')) {
+					this.model.set('id', count());
+				};
 
-			if (!this.collection.get(this.model)) {
-				this.collection.add(this.model);	
+				if (!this.collection.get(this.model)) {
+					this.collection.add(this.model);	
+				};
 			};
 		},
 

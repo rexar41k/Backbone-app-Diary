@@ -29,9 +29,29 @@ define([
 		},
 
 		events: {
-			'click .delete'    : "deleteEvent",
-			'click #ratio-sort': "ratioSort",
-			'click #date-sort' : "dateSort"
+			'click .delete'        : "deleteEvent",
+			'click #ratio-sort'    : "ratioSort",
+			'click #date-sort'     : "dateSort",
+			'click #find-name'     : "findName",
+			'focus #find-name-text': "focusText"
+		},
+
+		focusText: function () {
+			var names = collect.toJSON(),
+				newNames = [];
+			for (var i = 0; i < names.length; i++) {
+				newNames.push(names[i].eventName);
+			};
+
+			$( "#find-name-text" ).autocomplete({
+		      source: newNames
+		    });
+		},
+
+		findName: function (e) {
+			e.preventDefault();
+			var name = $('#find-name-text').val();
+			window.location.href = '#event/find/' + name
 		},
 
 		deleteEvent: function (e) {

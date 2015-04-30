@@ -20,8 +20,7 @@ requirejs.config({
 require([
 	'backbone',
 	'collections/events',
-	'routers/router',
-    'models/model'
+	'routers/router'
 ], function (Backbone, Collection, Workspace) {
 	// инициализируем роутер и стартуем Backbone.history()
 	new Workspace();

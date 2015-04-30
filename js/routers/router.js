@@ -8,10 +8,11 @@ define([
     'views/event',
     'models/model',
     'views/places',
+    'views/find',
     'library/jquery-ui.min',
     'library/parsley.min',
-    'library/ru'
-], function($, Backbone, InfoView, eventCollection, EventShow, ListEventView, EventView, Event, PlacesView){
+    'library/ru',
+], function($, Backbone, InfoView, eventCollection, EventShow, ListEventView, EventView, Event, PlacesView, FindEventView){
 
     var Router = Backbone.Router.extend({
 
@@ -23,9 +24,10 @@ define([
             "event/add"        : "createEvent",
             "event/:id"        : "showOneEvent",
             "event/edit/:id"   : "eventEdit",
+            "event/find/:name" : "findEvent",
             'event/add/success': "eventSuccessAdd",
             "event/delete/:id" : "eventDelete",
-            "*d"               : "showDefault",
+            "*default"         : "showDefault",
         },
 
         initialize: function () {
@@ -33,30 +35,6 @@ define([
 
             if(localStorage.getItem('collect')) {
                 collect.add(JSON.parse(localStorage.getItem('collect')));
-            } else {
-                var event1 = new Event({
-                    id: 101,
-                    eventName: "Event 101",
-                    eventText: "event text 101",
-                    eventDate: '13/10/91',
-                    eventRatio: 'Нейтральное',
-                    eventVideo: 'https://www.youtube.com/watch?v=wLKP9uffaD0',
-                    eventMap: '60.06634,39.305008',
-                    eventClass: ''
-                }); 
-
-                var event2 = new Event({
-                    id: 102,
-                    eventName: "Event 102",
-                    eventText: "event text 102",
-                    eventDate: '12/10/91',
-                    eventRatio: 'Положительное',
-                    eventVideo: 'https://www.youtube.com/watch?v=GVpPV4tHT58',
-                    eventMap: '70.06634,34.305008',
-                    eventClass: ''
-                });
-
-                collect.add(event1).add(event2);
             }
         },
 
@@ -67,8 +45,15 @@ define([
             localStorage.setItem('counter', window.counter);
         },
 
+        findEvent: function (name) {
+            $('h3').text("Нашли событие с именем: " + name);
+            var names = collect.findWhere({eventName: name}),
+                view = new FindEventView({model: names});
+            $('#main').html(view.render().$el);
+        },
+
         showOneEvent: function (id) {
-            $('h3').text("Просмотр события с id:" + id);
+            $('h3').text("Просмотр события с id: " + id);
             var event = collect.findWhere({id: +id}),
                 view = new EventShow({model: event});
             $('#main').html(view.render().$el);
